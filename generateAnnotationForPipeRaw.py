@@ -14,9 +14,18 @@ for i in normalize['images']:
     widthHeightList.append((i['width'],i['height'],i['file_name']))
 
 
+train = open("pipeTrain.txt", "w")
+valid = open("pipeVal.txt", "w")
 
-classNumber = 81
+trainNum = 80
+validNum = 20
+
+trainNumCur = 0
+validNumCur = 0
+
+classNumber = 1
 for i in data:
+    
     w = h = 0.0
     for j in widthHeightList:
         if j[2].split('.')[0] == data[i]['filename'].split('.')[0]:
@@ -24,5 +33,15 @@ for i in data:
             h = float(j[1])
     f = open(("generatedAnnotation/"+data[i]['filename'].split('.')[0]+".txt"), "w")
     f.write(str(classNumber) + " " + format(float(data[i]['regions'][0]['shape_attributes']['x'])/w, '.6f') + " " + format(float(data[i]['regions'][0]['shape_attributes']['y'])/h, '.6f') + " " + format(float(data[i]['regions'][0]['shape_attributes']['width'])/w, '.6f') + " " + format(float(data[i]['regions'][0]['shape_attributes']['height'])/h, '.6f'))
+    trainNumCur += 1
+    if(trainNumCur <= trainNum):
+        train.write("generatedAnnotation/"+data[i]['filename']+"\n")
+    else:
+        validNumCur += 1
+        if(validNumCur <= validNum):
+            valid.write("generatedAnnotation/"+data[i]['filename']+"\n")
+
 # Closing file
 f.close()
+train.close()
+valid.close()
