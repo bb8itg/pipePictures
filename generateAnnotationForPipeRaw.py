@@ -23,7 +23,7 @@ validNum = 20
 trainNumCur = 0
 validNumCur = 0
 
-classNumber = 1
+classNumber = 0
 for i in data:
     
     w = h = 0.0
