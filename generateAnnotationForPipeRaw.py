@@ -31,15 +31,15 @@ for i in data:
         if j[2].split('.')[0] == data[i]['filename'].split('.')[0]:
             w = float(j[0])
             h = float(j[1])
-    f = open(("generatedAnnotation/"+data[i]['filename'].split('.')[0]+".txt"), "w")
+    f = open(("labels/"+data[i]['filename'].split('.')[0]+".txt"), "w")
     f.write(str(classNumber) + " " + format(float(data[i]['regions'][0]['shape_attributes']['x'])/w, '.6f') + " " + format(float(data[i]['regions'][0]['shape_attributes']['y'])/h, '.6f') + " " + format(float(data[i]['regions'][0]['shape_attributes']['width'])/w, '.6f') + " " + format(float(data[i]['regions'][0]['shape_attributes']['height'])/h, '.6f'))
     trainNumCur += 1
     if(trainNumCur <= trainNum):
-        train.write("pipe/pipeRaw/"+data[i]['filename']+"\n")
+        train.write("./images/"+data[i]['filename']+"\n")
     else:
         validNumCur += 1
         if(validNumCur <= validNum):
-            valid.write("pipe/pipeRaw/"+data[i]['filename']+"\n")
+            valid.write("./images/"+data[i]['filename']+"\n")
 
 # Closing file
 f.close()
