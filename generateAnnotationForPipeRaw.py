@@ -35,11 +35,11 @@ for i in data:
     f.write(str(classNumber) + " " + format(float(data[i]['regions'][0]['shape_attributes']['x'])/w, '.6f') + " " + format(float(data[i]['regions'][0]['shape_attributes']['y'])/h, '.6f') + " " + format(float(data[i]['regions'][0]['shape_attributes']['width'])/w, '.6f') + " " + format(float(data[i]['regions'][0]['shape_attributes']['height'])/h, '.6f'))
     trainNumCur += 1
     if(trainNumCur <= trainNum):
-        train.write("generatedAnnotation/"+data[i]['filename'].split('.')[0]+".txt"+"\n")
+        train.write("generatedAnnotation/"+data[i]['filename']+"\n")
     else:
         validNumCur += 1
         if(validNumCur <= validNum):
-            valid.write("generatedAnnotation/"+data[i]['filename'].split('.')[0]+".txt"+"\n")
+            valid.write("generatedAnnotation/"+data[i]['filename']+"\n")
 
 # Closing file
 f.close()
