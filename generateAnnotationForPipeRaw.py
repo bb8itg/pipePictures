@@ -32,7 +32,11 @@ for i in data:
             w = float(j[0])
             h = float(j[1])
     f = open(("labels/"+data[i]['filename'].split('.')[0]+".txt"), "w")
-    f.write(str(classNumber) + " " + format(float(data[i]['regions'][0]['shape_attributes']['x'])/w, '.6f') + " " + format(float(data[i]['regions'][0]['shape_attributes']['y'])/h, '.6f') + " " + format(float(data[i]['regions'][0]['shape_attributes']['width'])/w, '.6f') + " " + format(float(data[i]['regions'][0]['shape_attributes']['height'])/h, '.6f'))
+    f.write(str(classNumber) + " " +
+            format((float(data[i]['regions'][0]['shape_attributes']['x']) + float(data[i]['regions'][0]['shape_attributes']['width'])/2.0)/w, '.6f') + " " +
+            format((float(data[i]['regions'][0]['shape_attributes']['y']) + float(data[i]['regions'][0]['shape_attributes']['height'])/2.0)/h, '.6f') + " " +
+            format(float(data[i]['regions'][0]['shape_attributes']['width'])/w, '.6f') + " " +
+            format(float(data[i]['regions'][0]['shape_attributes']['height'])/h, '.6f'))
     trainNumCur += 1
     if(trainNumCur <= trainNum):
         train.write("./images/"+data[i]['filename']+"\n")
